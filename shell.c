@@ -2,72 +2,37 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <string.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 #define BUFFER_SIZE 64 
 
-void get_input(char *in)
+// Getting input from user and save into buffer
+int get_input(char *str)
 {
-//	int counter = 0;
-//	char buffer[BUFFER_SIZE];
-//	char *token;
-//	// passed
-//	printf(">>> ");
-//	fgets(buffer, BUFFER_SIZE, stdin);
-//	printf("%s", buffer);
-//	token = strtok(buffer, " ");
-//	printf("%s\n", token);
-//	for (int i = 0; token[i] != EOF; i++)
-//	{
-//		*in[counter][i] = token[i];
-//	}
-//	counter++;
-//	in[counter] = token;
-//	printf("%s\n", in[counter]);
-	// not passed
-//	token = strtok(NULL, " ");
-//	printf("%s\n", token);
-//	in[counter+1] = token;
-//	printf("%s\n", in[counter+1]);
-	
-//	token = strtok(NULL, " ");		
-//	while (token != NULL)
-//	{
-//		in[counter++] = token;
-//		printf("%s\n", token);
-//		token = strtok(NULL, " ");		
-//	}
-////	in[2] = NULL;
+  char *buffer;
+  buffer = readline(">>> ");
+  printf("%s\n", buffer); 
+  if (strlen(buffer) != 0)
+  {
+    add_history(buffer);
+    strcpy(str, buffer);
+    return 0;
+  } 
+  else
+  {
+    return 1;
+  }
 }
 
 int main()
 {
-//	char *args[3][16];
-//	= {{'\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0'},
-//											{'\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0'},
-//  										{'\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0'}};
+	char *args[3];
+  char str[BUFFER_SIZE];
+  get_input(str);
+  printf("%s\n", str);
 	pid_t pid;
 	
-//	get_input(*args);
-	printf(">>> ");
-  char buf[BUFFER_SIZE];
-	fgets(buf, BUFFER_SIZE, stdin);
-  int counter = 0;
-  char *p = strtok (buf, " ");
-  char *args[3];
-
-  while (p != NULL)
-  {
-      args[counter++] = p;
-      p = strtok (NULL, " ");
-  }
-	args[counter] = NULL;
-  for (int i = 0; i <= 2; ++i) 
-      if (args[i] != NULL)
-        printf("%s\n", args[i]);
-//	execvp(args[0], args);
-//  char *args2[] = {"ls", "-al", NULL};
-//  execvp(args2[0], args2);
-
 //	while (1) 
 //	{
 //		pid = fork();	
