@@ -8,7 +8,7 @@
 #define BUFFER_SIZE 64 
 
 // Getting input from user and save into buffer
-int get_input(char *str)
+int getInput(char *str)
 {
   char *buffer;
   buffer = readline(">>> ");
@@ -29,29 +29,19 @@ int main()
 {
 	char *args[3];
   char str[BUFFER_SIZE];
-  get_input(str);
+  getInput(str);
   printf("%s\n", str);
-	pid_t pid;
-	
-//	while (1) 
-//	{
-//		pid = fork();	
-//		if (pid < 0)
-//		{
-//			// failure 
-//			printf("error!");
-//		} 
-//		else if (pid == 0)
-//		{
-//			// pid process
-////      const command = args[0];
-//			execvp(args[0], args);
-//		}
-//	       	else if (pid > 0)
-//		{
-//			// parent process
-//			wait(NULL);
-//		}	
-//	}
+  
+  char *token = strtok(str, " ");
+  int counter = 0;
+  
+  while (token != NULL)
+  {
+    args[counter++] = token;
+    token = strtok(NULL, " ");
+  }
+  args[2] = NULL;
+  printf("%s\n%s\n", args[0], args[1]);
+  
 	return 0;
 }
