@@ -6,13 +6,14 @@
 #include <readline/history.h>
 
 #define BUFFER_SIZE 64 
+#define ARGS_SIZE 16
 
 // Getting input from user and save into buffer
 int getInput(char *str)
 {
   char *buffer;
   buffer = readline(">>> ");
-  printf("%s\n", buffer); 
+  printf("buffer: %s\n", buffer); 
   if (strlen(buffer) != 0)
   {
     add_history(buffer);
@@ -27,10 +28,10 @@ int getInput(char *str)
 
 int main()
 {
-	char *args[3];
+	char *args[ARGS_SIZE];
   char str[BUFFER_SIZE];
   getInput(str);
-  printf("%s\n", str);
+  printf("str: %s\n", str);
   
   char *token = strtok(str, " ");
   int counter = 0;
@@ -40,8 +41,11 @@ int main()
     args[counter++] = token;
     token = strtok(NULL, " ");
   }
-  args[2] = NULL;
-  printf("%s\n%s\n", args[0], args[1]);
+  args[counter] = NULL;
+  for (int i = 0; i < counter; i++)
+  {
+    printf("param %d: %s\n", i, args[i]);
+  }
   
 	return 0;
 }
