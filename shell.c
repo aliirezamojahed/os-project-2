@@ -2,7 +2,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <string.h>
-#include <stdbool.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -35,15 +34,14 @@ int getInput(char *str)
 	}
 }
 
-
-
-
+// helloShell built-in command
 void hello() 
 {
 	printf(ANSI_COLOR_CYAN "Hello, welcome, nice to meet you!\n" ANSI_COLOR_RESET);
 	// another features...
 }
 
+// cd built-in command
 int changeDirectory(char *path) 
 {
 	char s[100];
@@ -120,5 +118,4 @@ int main()
 		}
 	}	
 	
-	return 0;
 }
