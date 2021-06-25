@@ -24,9 +24,9 @@ int getInput(char *str)
 	// printf("buffer: %s\n", buffer); 
 	if (strlen(buffer) != 0)
 	{
-	add_history(buffer);
-	strcpy(str, buffer);
-	return 0;
+		add_history(buffer);
+		strcpy(str, buffer);
+		return 0;
 	} 
 	else
 	{
@@ -58,8 +58,10 @@ int changeDirectory(char *path)
 
 int main() 
 {	
+	printf("\033[H\033[J");  // clear screen
 	char *clear[] = {"clear", NULL};
-	
+	hello();	
+
 	while (1) {
 
 		pid_t pid;
@@ -117,5 +119,4 @@ int main()
 			return 0;
 		}
 	}	
-	
 }
