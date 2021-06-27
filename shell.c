@@ -48,9 +48,9 @@ int changeDirectory(char *path)
 {
 	char s[100];
 
-	if (strcmp(args[1], "~") == 0)
+	if (strcmp(path, "~") == 0)
 	{
-		args[1] = getenv(“HOME”);
+		path = getenv("HOME");
 	}
 	if (chdir(path) != 0)
 	{
