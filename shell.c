@@ -53,7 +53,7 @@ int changeDirectory(char *path)
 		perror("chdir() is failed!");
 	}
 	// printing current working directory
-  printf(ANSI_COLOR_BLUE "%s\n" ANSI_COLOR_RESET, getcwd(s, 100));
+  	printf(ANSI_COLOR_BLUE "%s\n" ANSI_COLOR_RESET, getcwd(s, 100));
 
 	return 0;
 }
@@ -74,7 +74,7 @@ int main()
 	{
 		if (getInput(str))
 		{
-			printf("input error!");
+			perror("input error!");
 			continue;
 		}
 		
@@ -109,7 +109,7 @@ int main()
 				if (pid < 0)
 				{
 					// Failure 
-					perror("error!");
+					perror("forking error!");
 				} 
 				else if (pid == 0)
 				{
